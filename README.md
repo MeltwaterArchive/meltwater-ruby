@@ -1,4 +1,4 @@
-# swagger_client
+# Meltwater Ruby SDK 
 
 SwaggerClient - the Ruby gem for the The Meltwater API
 

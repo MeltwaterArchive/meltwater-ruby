@@ -1,0 +1,593 @@
+{
+  "info": {
+    "title": "The Meltwater API",
+    "description": "The Meltwater API provides the needed resources for Meltwater clients to create & delete REST Hooks and stream Meltwater search results to your specified destination.",
+    "contact": {
+      "name": "The Meltwater API Team",
+      "email": "support@api.meltwater.com"
+    },
+    "version": "0.9.0"
+  },
+  "swagger": "2.0",
+  "produces": [
+    "application/xml",
+    "application/json",
+    "application/octet-stream",
+    "text/plain"
+  ],
+  "host": "api.meltwater.io",
+  "tags": [
+    {
+      "name": "hooks",
+      "description": "Operations about hooks"
+    },
+    {
+      "name": "searches",
+      "description": "Operations about searches"
+    },
+    {
+      "name": "admin",
+      "description": "Operations about admins"
+    },
+    {
+      "name": "clients",
+      "description": "Operations about clients"
+    },
+    {
+      "name": "_health",
+      "description": "Operations about _healths"
+    },
+    {
+      "name": "oauth2",
+      "description": "Operations about oauth2s"
+    },
+    {
+      "name": "_health",
+      "description": "Operations about _healths"
+    }
+  ],
+  "paths": {
+    "/v1/hooks": {
+      "get": {
+        "summary": "List all hooks.",
+        "description": "List all hooks.\n \n\n Delivers all previously generated hooks.\n\n\n\nRequires an OAuth access token.",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "header",
+            "name": "user-key",
+            "description": "The `user_key` from [developer.meltwater.io](https://developer.meltwater.io/admin/applications/).",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "header",
+            "name": "Authorization",
+            "description": "`Oauth Access Token`\n\n\n\nOAuth access token (RFC 6749). Must contain the access token type `Bearer`\n followed by an OAuth access token.\n\n\n\n#### Example:\n\n\n\n    Bearer KKwmfHwxsEoeMDTMAfxOpO...",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List all hooks.",
+            "schema": {
+              "$ref": "#/definitions/HooksCollection"
+            }
+          },
+          "401": {
+            "description": "Invalid or expired token."
+          },
+          "403": {
+            "description": "Not entitled to the service"
+          },
+          "500": {
+            "description": "Something went wrong while trying\nto fetch your hooks. "
+          }
+        },
+        "tags": [
+          "hooks"
+        ],
+        "operationId": "getV1Hooks"
+      },
+      "post": {
+        "summary": "Creates a hook for one of your predefined searches.",
+        "description": "Creates a hook for one of your predefined searches.\n Delivers search results for the query referenced by thesearch_id to the target_url via HTTP POST. Note that a hook id will be returned on successful creation, this id is needed to delete the hook.\n\n\n\n Requires an OAuth access token.",
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "header",
+            "name": "user-key",
+            "description": "The `user_key` from [developer.meltwater.io](https://developer.meltwater.io/admin/applications/).",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "header",
+            "name": "Authorization",
+            "description": "`Oauth Access Token`\n\n\n\nOAuth access token (RFC 6749). Must contain the access token type `Bearer`\n followed by an OAuth access token.\n\n\n\n#### Example:\n\n\n\n    Bearer KKwmfHwxsEoeMDTMAfxOpO...",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "V1Hooks",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/postV1Hooks"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Successfully Created",
+            "schema": {
+              "$ref": "#/definitions/Hook"
+            }
+          },
+          "400": {
+            "description": "Missing required parameters."
+          },
+          "401": {
+            "description": "Invalid or expired token."
+          },
+          "403": {
+            "description": "Not entitled to the service"
+          },
+          "404": {
+            "description": "The search you are trying to create a REST\nhook for was not found.",
+            "schema": {
+              "$ref": "#/definitions/ErrorsCollection"
+            }
+          },
+          "500": {
+            "description": "Something went wrong while trying to create\nyour REST hook.",
+            "schema": {
+              "$ref": "#/definitions/ErrorsCollection"
+            }
+          }
+        },
+        "tags": [
+          "hooks"
+        ],
+        "operationId": "postV1Hooks"
+      }
+    },
+    "/v1/hooks/{id}": {
+      "delete": {
+        "summary": "Delete an existing hook.",
+        "description": "Delete an existing hook.\n Removes the hook and stops sending any search results to the target_url.\n\n\n\nRequires an OAuth access token.",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "header",
+            "name": "user-key",
+            "description": "The `user_key` from [developer.meltwater.io](https://developer.meltwater.io/admin/applications/).",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "header",
+            "name": "Authorization",
+            "description": "`Oauth Access Token`\n\n\n\nOAuth access token (RFC 6749). Must contain the access token type `Bearer`\n followed by an OAuth access token.\n\n\n\n#### Example:\n\n\n\n    Bearer KKwmfHwxsEoeMDTMAfxOpO...",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "id",
+            "description": "Hook ID received from creating a hook",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Successfully Deleted"
+          },
+          "400": {
+            "description": "Missing required parameters."
+          },
+          "401": {
+            "description": "Invalid or expired token."
+          },
+          "403": {
+            "description": "Not entitled to the service"
+          },
+          "404": {
+            "description": "The REST hook you are trying to delete was\nnot found"
+          },
+          "500": {
+            "description": "Something went wrong while trying to delete\nyour hook(-s)."
+          }
+        },
+        "tags": [
+          "hooks"
+        ],
+        "operationId": "deleteV1HooksId"
+      }
+    },
+    "/v1/searches": {
+      "get": {
+        "summary": "List your saved searches.",
+        "description": "List your saved searches.",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "header",
+            "name": "user-key",
+            "description": "The `user_key` from [developer.meltwater.io](https://developer.meltwater.io/admin/applications/).",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "header",
+            "name": "Authorization",
+            "description": "`Oauth Access Token`\n\n\n\nOAuth access token (RFC 6749). Must contain the access token type `Bearer`\n followed by an OAuth access token.\n\n\n\n#### Example:\n\n\n\n    Bearer KKwmfHwxsEoeMDTMAfxOpO...",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List your saved searches.",
+            "schema": {
+              "$ref": "#/definitions/SearchesCollection"
+            }
+          },
+          "400": {
+            "description": "Missing required parameters."
+          },
+          "401": {
+            "description": "Invalid or expired token."
+          },
+          "403": {
+            "description": "Not entitled to the service"
+          },
+          "500": {
+            "description": "Something went wrong when listing your\nsearches",
+            "schema": {
+              "$ref": "#/definitions/ErrorsCollection"
+            }
+          }
+        },
+        "tags": [
+          "searches"
+        ],
+        "operationId": "getV1Searches"
+      }
+    },
+    "/v1/clients": {
+      "post": {
+        "summary": "Register new client",
+        "description": "Register new client\n \n\n\nCreates a new pair of client credentials (`client_id`/`client_secret` pair).\n Requires your Meltwater credentials (`email`:`password`) to authenticate.\n\n\n#### Appendix\n\n\n\nThe Base64-encoded `email`:`password` string can be generated in a terminal\n with following command:\n\n\n\n    $ echo -n \"your_email@your_domain.com:your_secret_password\" | base64\n\n\n\n<i>You will need `base64` installed.</i>",
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "header",
+            "name": "user-key",
+            "description": "The `user_key` from [developer.meltwater.io](https://developer.meltwater.io/admin/applications/).",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "header",
+            "name": "Authorization",
+            "description": "`email`:`password`\n\n\n\nBasic Auth (RFC2617) credentials. Must contain the realm `Basic` followed by a\n Base64-encoded `email`:`password` pair using your Meltwater credentials.\n\n\n\n#### Example:\n\n\n\n    Basic bXlfZW1haWxAZXhhbXJzZWNyZXQ=",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Client was successfully created.",
+            "schema": {
+              "$ref": "#/definitions/ClientCredentials"
+            }
+          },
+          "400": {
+            "description": "Client creation failed."
+          },
+          "401": {
+            "description": "Invalid credentials."
+          },
+          "409": {
+            "description": "Client already exists."
+          },
+          "500": {
+            "description": "Internal failure."
+          }
+        },
+        "tags": [
+          "clients"
+        ],
+        "operationId": "postV1Clients"
+      }
+    },
+    "/v1/clients/{client_id}": {
+      "delete": {
+        "summary": "Delete client.",
+        "description": "Delete client.\n \n\nDeletes your current client credentials consisting of\n client_id and client_secret. After calling this resource, you will not be able\n to use the Meltwater API unless you create a new set of client credentials!\n Requires your Meltwater credentials (`email`:`password`) to authenticate.\n\n\n#### Appendix\n\n\n\nThe Base64-encoded `email`:`password` string can be generated in a terminal\n with following command:\n\n\n\n    $ echo -n \"your_email@your_domain.com:your_secret_password\" | base64\n\n\n\n<i>You will need `base64` installed.</i>",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "header",
+            "name": "user-key",
+            "description": "The `user_key` from [developer.meltwater.io](https://developer.meltwater.io/admin/applications/).",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "header",
+            "name": "Authorization",
+            "description": "`email`:`password`\n\n\n\nBasic Auth (RFC2617) credentials. Must contain the realm `Basic` followed by a\n Base64-encoded `email`:`password` pair using your Meltwater credentials.\n\n\n\n#### Example:\n\n\n\n    Basic bXlfZW1haWxAZXhhbXJzZWNyZXQ=",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "client_id",
+            "description": "Client ID",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Client was successfully deleted."
+          },
+          "401": {
+            "description": "Invalid credentials."
+          },
+          "404": {
+            "description": "Client was not found."
+          },
+          "500": {
+            "description": "Internal failure."
+          }
+        },
+        "tags": [
+          "clients"
+        ],
+        "operationId": "deleteV1ClientsClientId"
+      }
+    },
+    "/oauth2/token": {
+      "post": {
+        "summary": "Create an access token",
+        "description": "Create an OAuth2 access token based on the provided\n`client_id` and `client_secret`",
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/x-www-form-urlencoded"
+        ],
+        "parameters": [
+          {
+            "in": "header",
+            "name": "user-key",
+            "description": "The `user_key` from [developer.meltwater.io](https://developer.meltwater.io/admin/applications/).",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "header",
+            "name": "Authorization",
+            "description": "`client_id:client_secret`\n\nBasic Auth (RFC2617)\ncredentials. Must contain the realm `Basic` followed by a Base64-encoded\n`client_id`:`client_secret` pair.\n\n\n#### Example:\n\n    Basic aAlfbb1haWxDSXhhDXxxZWKJAyZXQ=",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "formData",
+            "name": "grant_type",
+            "description": "OAuth2 grant type, use `client_credentials`",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "formData",
+            "name": "scope",
+            "description": "OAuth2 scope, use `search`",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Create an access token",
+            "schema": {
+              "$ref": "#/definitions/OAuth2Token"
+            }
+          }
+        },
+        "tags": [
+          "oauth2"
+        ],
+        "operationId": "postOauth2Token"
+      }
+    }
+  },
+  "definitions": {
+    "HooksCollection": {
+      "type": "object",
+      "properties": {
+        "hooks": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Hook"
+          }
+        }
+      },
+      "description": "List all hooks.\n \n\n Delivers all previously generated hooks.\n\n\n\nRequires an OAuth access token."
+    },
+    "Hook": {
+      "type": "object",
+      "properties": {
+        "search_id": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Search id"
+        },
+        "target_url": {
+          "type": "string",
+          "description": "The URL that results from the search will be posted to"
+        },
+        "updated": {
+          "type": "string"
+        },
+        "search_type": {
+          "type": "string",
+          "description": "The type of search the hook is for"
+        },
+        "hook_id": {
+          "type": "string"
+        }
+      },
+      "description": "Creates a hook for one of your predefined searches.\n Delivers search results for the query referenced by thesearch_id to the target_url via HTTP POST. Note that a hook id will be returned on successful creation, this id is needed to delete the hook.\n\n\n\n Requires an OAuth access token."
+    },
+    "postV1Hooks": {
+      "type": "object",
+      "properties": {
+        "target_url": {
+          "type": "string",
+          "description": "Target URL to send article results"
+        },
+        "search_id": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Search ID"
+        }
+      },
+      "required": [
+        "target_url",
+        "search_id"
+      ],
+      "description": "Creates a hook for one of your predefined searches."
+    },
+    "ErrorsCollection": {
+      "type": "object",
+      "properties": {
+        "errors": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Error"
+          }
+        }
+      },
+      "description": "List your saved searches."
+    },
+    "Error": {
+      "type": "object",
+      "properties": {
+        "details": {
+          "type": "string",
+          "description": "Human-readable error message."
+        },
+        "title": {
+          "type": "string",
+          "description": "Error title"
+        },
+        "type": {
+          "type": "string",
+          "description": "Error category"
+        },
+        "meta": {
+          "type": "object",
+          "description": "Additional meta-information to qualify error"
+        }
+      }
+    },
+    "SearchesCollection": {
+      "type": "object",
+      "properties": {
+        "searches": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Search"
+          }
+        }
+      },
+      "description": "List your saved searches."
+    },
+    "Search": {
+      "type": "object",
+      "properties": {
+        "search_id": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Search id"
+        },
+        "name": {
+          "type": "string",
+          "description": "Name of the search"
+        },
+        "updated": {
+          "type": "string",
+          "description": "Date time of the last update of the search"
+        },
+        "type": {
+          "type": "string",
+          "description": "The type of results the search returns"
+        }
+      }
+    },
+    "ClientCredentials": {
+      "type": "object",
+      "properties": {
+        "client_id": {
+          "type": "string",
+          "description": "Id of the client"
+        },
+        "client_secret": {
+          "type": "string",
+          "description": "The secret of the client"
+        }
+      },
+      "description": "Register new client\n \n\n\nCreates a new pair of client credentials (`client_id`/`client_secret` pair).\n Requires your Meltwater credentials (`email`:`password`) to authenticate.\n\n\n#### Appendix\n\n\n\nThe Base64-encoded `email`:`password` string can be generated in a terminal\n with following command:\n\n\n\n    $ echo -n \"your_email@your_domain.com:your_secret_password\" | base64\n\n\n\n<i>You will need `base64` installed.</i>"
+    },
+    "OAuth2Token": {
+      "type": "object",
+      "properties": {
+        "access_token": {
+          "type": "string",
+          "description": "The oauth2 access token to use for subsequent API calls"
+        },
+        "expires_in": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Time until the token expires in seconds"
+        },
+        "scope": {
+          "type": "string",
+          "description": "The type of oauth2 scope the token is valid for"
+        },
+        "token_type": {
+          "type": "string",
+          "description": "The type/realm of the access token"
+        }
+      },
+      "description": "Create an OAuth2 access token based on the provided\n`client_id` and `client_secret`"
+    }
+  },
+  "schemes": [
+    "https"
+  ]
+}

@@ -50,28 +50,8 @@ ruby -Ilib script.rb
 
 ## Getting Started
 
-Please follow the [installation](#installation) procedure and then run the following code:
-```ruby
-# Load the gem
-require 'swagger_client'
-
-api_instance = SwaggerClient::ClientsApi.new
-
-user_key = "user_key_example" # String | The `user_key` from [developer.meltwater.io](https://developer.meltwater.io/admin/applications/).
-
-authorization = "authorization_example" # String | `email`:`password`    Basic Auth (RFC2617) credentials. Must contain the realm `Basic` followed by a  Base64-encoded `email`:`password` pair using your Meltwater credentials.    #### Example:        Basic bXlfZW1haWxAZXhhbXJzZWNyZXQ=
-
-client_id = "client_id_example" # String | Client ID
-
-
-begin
-  #Delete client.
-  api_instance.delete_v1_clients_client_id(user_key, authorization, client_id)
-rescue SwaggerClient::ApiError => e
-  puts "Exception when calling ClientsApi->delete_v1_clients_client_id: #{e}"
-end
-
-```
+First follow the [installation](#installation) procedure and then you can check
+   out the [example](example/mwapi.rb) for some inspiration. 
 
 ## Documentation for API Endpoints
 

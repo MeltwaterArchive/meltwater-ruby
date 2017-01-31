@@ -7,7 +7,6 @@
 #   ruby ./mwapi.rb
 require 'base64'
 require 'swagger_client'
-require 'pry'
 
 PREFIX = 'MeltwaterAPI:'
 
@@ -46,9 +45,8 @@ class Meltwater
 
   def create_token
     create_client
-    binding.pry
-    @oauth.post_oauth2_token(@user_key, "Basic #{client_pair}",
-                             @grant_type, @scope)
+    @oauth.create_token(@user_key, "Basic #{client_pair}",
+                        @grant_type, @scope)
   end
 
   def auth_header(token)
@@ -56,28 +54,28 @@ class Meltwater
   end
 
   def get_all_searches(authorization)
-    @searches.get_v1_searches(@user_key, authorization)
+    @searches.get_all_searches(@user_key, authorization)
   end
 
   def create_hook(authorization, hook)
-    @hooks.post_v1_hooks(@user_key, authorization, hook)
+    @hooks.create_hook(@user_key, authorization, hook)
   end
 
   def delete_hook(authorization, hook_id)
-    @hooks.delete_v1_hooks_id(@user_key, authorization, hook_id)
+    @hooks.delete_hook(@user_key, authorization, hook_id)
   end
 
   def delete_client
-    @clients.delete_v1_clients_client_id(@user_key,
-                                         "Basic #{@mw_pair}",
-                                         @client_id)
+    @clients.delete_client_credentials(@user_key,
+                                       "Basic #{@mw_pair}",
+                                       @client_id)
   end
 
   private
 
   def create_client
     puts "#{PREFIX} Creating Client Credentials Pair for User : #{ENV['MW_USER']}"
-    creds = @clients.post_v1_clients(@user_key, "Basic #{@mw_pair}")
+    creds = @clients.create_client_credentials(@user_key, "Basic #{@mw_pair}")
     @client_id = creds.client_id
     @client_secret = creds.client_secret
   end
@@ -89,7 +87,8 @@ class Meltwater
   end
 end
 
-class HookDTO < SwaggerClient::PostV1Hooks; end
+class HookDTO < SwaggerClient::PostV1Hooks;
+end
 
 begin
   mw = Meltwater.new
@@ -111,7 +110,7 @@ begin
 
   hook_id = response.hook_id
   puts "#{PREFIX} Deleting hook for search id: #{search_id}"
-  mw.delete_hook(authorization,hook_id)
+  mw.delete_hook(authorization, hook_id)
 
   puts "#{PREFIX} Deleting Client Credentials"
   mw.delete_client

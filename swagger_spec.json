@@ -6,7 +6,7 @@
       "name": "The Meltwater API Team",
       "email": "support@api.meltwater.com"
     },
-    "version": "0.9.0"
+    "version": "1.0.0"
   },
   "swagger": "2.0",
   "produces": [
@@ -90,7 +90,7 @@
         "tags": [
           "hooks"
         ],
-        "operationId": "getV1Hooks"
+        "operationId": "getAllHooks"
       },
       "post": {
         "summary": "Creates a hook for one of your predefined searches.",
@@ -157,7 +157,7 @@
         "tags": [
           "hooks"
         ],
-        "operationId": "postV1Hooks"
+        "operationId": "createHook"
       }
     },
     "/v1/hooks/{id}": {
@@ -213,7 +213,7 @@
         "tags": [
           "hooks"
         ],
-        "operationId": "deleteV1HooksId"
+        "operationId": "deleteHook"
       }
     },
     "/v1/searches": {
@@ -265,7 +265,7 @@
         "tags": [
           "searches"
         ],
-        "operationId": "getV1Searches"
+        "operationId": "getAllSearches"
       }
     },
     "/v1/clients": {
@@ -317,7 +317,7 @@
         "tags": [
           "clients"
         ],
-        "operationId": "postV1Clients"
+        "operationId": "createClientCredentials"
       }
     },
     "/v1/clients/{client_id}": {
@@ -367,7 +367,7 @@
         "tags": [
           "clients"
         ],
-        "operationId": "deleteV1ClientsClientId"
+        "operationId": "deleteClientCredentials"
       }
     },
     "/oauth2/token": {
@@ -421,7 +421,7 @@
         "tags": [
           "oauth2"
         ],
-        "operationId": "postOauth2Token"
+        "operationId": "createToken"
       }
     }
   },

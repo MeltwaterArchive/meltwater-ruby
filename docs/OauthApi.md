@@ -4,11 +4,11 @@ All URIs are relative to *https://api.meltwater.io*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**post_oauth2_token**](OauthApi.md#post_oauth2_token) | **POST** /oauth2/token | Create an access token
+[**create_token**](OauthApi.md#create_token) | **POST** /oauth2/token | Create an access token
 
 
-# **post_oauth2_token**
-> OAuth2Token post_oauth2_token(user_key, authorization, grant_type, scope)
+# **create_token**
+> OAuth2Token create_token(user_key, authorization, grant_type, scope)
 
 Create an access token
 
@@ -32,10 +32,10 @@ scope = "scope_example" # String | OAuth2 scope, use `search`
 
 begin
   #Create an access token
-  result = api_instance.post_oauth2_token(user_key, authorization, grant_type, scope)
+  result = api_instance.create_token(user_key, authorization, grant_type, scope)
   p result
 rescue SwaggerClient::ApiError => e
-  puts "Exception when calling OauthApi->post_oauth2_token: #{e}"
+  puts "Exception when calling OauthApi->create_token: #{e}"
 end
 ```
 

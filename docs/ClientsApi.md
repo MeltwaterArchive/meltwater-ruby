@@ -4,12 +4,62 @@ All URIs are relative to *https://api.meltwater.io*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**delete_v1_clients_client_id**](ClientsApi.md#delete_v1_clients_client_id) | **DELETE** /v1/clients/{client_id} | Delete client.
-[**post_v1_clients**](ClientsApi.md#post_v1_clients) | **POST** /v1/clients | Register new client
+[**create_client_credentials**](ClientsApi.md#create_client_credentials) | **POST** /v1/clients | Register new client
+[**delete_client_credentials**](ClientsApi.md#delete_client_credentials) | **DELETE** /v1/clients/{client_id} | Delete client.
 
 
-# **delete_v1_clients_client_id**
-> delete_v1_clients_client_id(user_key, authorization, client_id)
+# **create_client_credentials**
+> ClientCredentials create_client_credentials(user_key, authorization)
+
+Register new client
+
+Register new client     Creates a new pair of client credentials (`client_id`/`client_secret` pair).  Requires your Meltwater credentials (`email`:`password`) to authenticate.   #### Appendix    The Base64-encoded `email`:`password` string can be generated in a terminal  with following command:        $ echo -n \"your_email@your_domain.com:your_secret_password\" | base64    <i>You will need `base64` installed.</i>
+
+### Example
+```ruby
+# load the gem
+require 'swagger_client'
+
+api_instance = SwaggerClient::ClientsApi.new
+
+user_key = "user_key_example" # String | The `user_key` from [developer.meltwater.io](https://developer.meltwater.io/admin/applications/).
+
+authorization = "authorization_example" # String | `email`:`password`    Basic Auth (RFC2617) credentials. Must contain the realm `Basic` followed by a  Base64-encoded `email`:`password` pair using your Meltwater credentials.    #### Example:        Basic bXlfZW1haWxAZXhhbXJzZWNyZXQ=
+
+
+begin
+  #Register new client
+  result = api_instance.create_client_credentials(user_key, authorization)
+  p result
+rescue SwaggerClient::ApiError => e
+  puts "Exception when calling ClientsApi->create_client_credentials: #{e}"
+end
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **user_key** | **String**| The &#x60;user_key&#x60; from [developer.meltwater.io](https://developer.meltwater.io/admin/applications/). | 
+ **authorization** | **String**| &#x60;email&#x60;:&#x60;password&#x60;    Basic Auth (RFC2617) credentials. Must contain the realm &#x60;Basic&#x60; followed by a  Base64-encoded &#x60;email&#x60;:&#x60;password&#x60; pair using your Meltwater credentials.    #### Example:        Basic bXlfZW1haWxAZXhhbXJzZWNyZXQ&#x3D; | 
+
+### Return type
+
+[**ClientCredentials**](ClientCredentials.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+
+# **delete_client_credentials**
+> delete_client_credentials(user_key, authorization, client_id)
 
 Delete client.
 
@@ -31,9 +81,9 @@ client_id = "client_id_example" # String | Client ID
 
 begin
   #Delete client.
-  api_instance.delete_v1_clients_client_id(user_key, authorization, client_id)
+  api_instance.delete_client_credentials(user_key, authorization, client_id)
 rescue SwaggerClient::ApiError => e
-  puts "Exception when calling ClientsApi->delete_v1_clients_client_id: #{e}"
+  puts "Exception when calling ClientsApi->delete_client_credentials: #{e}"
 end
 ```
 
@@ -56,56 +106,6 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json
-
-
-
-# **post_v1_clients**
-> ClientCredentials post_v1_clients(user_key, authorization)
-
-Register new client
-
-Register new client     Creates a new pair of client credentials (`client_id`/`client_secret` pair).  Requires your Meltwater credentials (`email`:`password`) to authenticate.   #### Appendix    The Base64-encoded `email`:`password` string can be generated in a terminal  with following command:        $ echo -n \"your_email@your_domain.com:your_secret_password\" | base64    <i>You will need `base64` installed.</i>
-
-### Example
-```ruby
-# load the gem
-require 'swagger_client'
-
-api_instance = SwaggerClient::ClientsApi.new
-
-user_key = "user_key_example" # String | The `user_key` from [developer.meltwater.io](https://developer.meltwater.io/admin/applications/).
-
-authorization = "authorization_example" # String | `email`:`password`    Basic Auth (RFC2617) credentials. Must contain the realm `Basic` followed by a  Base64-encoded `email`:`password` pair using your Meltwater credentials.    #### Example:        Basic bXlfZW1haWxAZXhhbXJzZWNyZXQ=
-
-
-begin
-  #Register new client
-  result = api_instance.post_v1_clients(user_key, authorization)
-  p result
-rescue SwaggerClient::ApiError => e
-  puts "Exception when calling ClientsApi->post_v1_clients: #{e}"
-end
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **user_key** | **String**| The &#x60;user_key&#x60; from [developer.meltwater.io](https://developer.meltwater.io/admin/applications/). | 
- **authorization** | **String**| &#x60;email&#x60;:&#x60;password&#x60;    Basic Auth (RFC2617) credentials. Must contain the realm &#x60;Basic&#x60; followed by a  Base64-encoded &#x60;email&#x60;:&#x60;password&#x60; pair using your Meltwater credentials.    #### Example:        Basic bXlfZW1haWxAZXhhbXJzZWNyZXQ&#x3D; | 
-
-### Return type
-
-[**ClientCredentials**](ClientCredentials.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: application/json
  - **Accept**: application/json
 
 

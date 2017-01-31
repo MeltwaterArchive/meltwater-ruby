@@ -4,11 +4,11 @@ All URIs are relative to *https://api.meltwater.io*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**get_v1_searches**](SearchesApi.md#get_v1_searches) | **GET** /v1/searches | List your saved searches.
+[**get_all_searches**](SearchesApi.md#get_all_searches) | **GET** /v1/searches | List your saved searches.
 
 
-# **get_v1_searches**
-> SearchesCollection get_v1_searches(user_key, authorization)
+# **get_all_searches**
+> SearchesCollection get_all_searches(user_key, authorization)
 
 List your saved searches.
 
@@ -28,10 +28,10 @@ authorization = "authorization_example" # String | `Oauth Access Token`    OAuth
 
 begin
   #List your saved searches.
-  result = api_instance.get_v1_searches(user_key, authorization)
+  result = api_instance.get_all_searches(user_key, authorization)
   p result
 rescue SwaggerClient::ApiError => e
-  puts "Exception when calling SearchesApi->get_v1_searches: #{e}"
+  puts "Exception when calling SearchesApi->get_all_searches: #{e}"
 end
 ```
 

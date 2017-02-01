@@ -10,6 +10,10 @@ require 'swagger_client'
 
 PREFIX = 'MeltwaterAPI:'
 
+# This is a proof of concept written quickly, to demonstrate the use of the
+# client. It is not a suggestion for how you should implement the client
+# yourself.
+#
 class Meltwater
   attr_accessor :clients, :hooks, :oauth, :searches
 

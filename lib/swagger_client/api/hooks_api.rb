@@ -33,7 +33,7 @@ module SwaggerClient
 
     # Creates a hook for one of your predefined searches.
     # Creates a hook for one of your predefined searches.  Delivers search results for the query referenced by thesearch_id to the target_url via HTTP POST. Note that a hook id will be returned on successful creation, this id is needed to delete the hook.     Requires an OAuth access token.
-    # @param user_key The &#x60;user_key&#x60; from [developer.meltwater.io](https://developer.meltwater.io/admin/applications/).
+    # @param user_key The &#x60;user_key&#x60; from [developer.meltwater.com](https://developer.meltwater.com/admin/applications/).
     # @param authorization &#x60;Oauth Access Token&#x60;    OAuth access token (RFC 6749). Must contain the access token type &#x60;Bearer&#x60;  followed by an OAuth access token.    #### Example:        Bearer KKwmfHwxsEoeMDTMAfxOpO...
     # @param v1_hooks 
     # @param [Hash] opts the optional parameters
@@ -45,7 +45,7 @@ module SwaggerClient
 
     # Creates a hook for one of your predefined searches.
     # Creates a hook for one of your predefined searches.  Delivers search results for the query referenced by thesearch_id to the target_url via HTTP POST. Note that a hook id will be returned on successful creation, this id is needed to delete the hook.     Requires an OAuth access token.
-    # @param user_key The &#x60;user_key&#x60; from [developer.meltwater.io](https://developer.meltwater.io/admin/applications/).
+    # @param user_key The &#x60;user_key&#x60; from [developer.meltwater.com](https://developer.meltwater.com/admin/applications/).
     # @param authorization &#x60;Oauth Access Token&#x60;    OAuth access token (RFC 6749). Must contain the access token type &#x60;Bearer&#x60;  followed by an OAuth access token.    #### Example:        Bearer KKwmfHwxsEoeMDTMAfxOpO...
     # @param v1_hooks 
     # @param [Hash] opts the optional parameters
@@ -100,7 +100,7 @@ module SwaggerClient
 
     # Delete an existing hook.
     # Delete an existing hook.  Removes the hook and stops sending any search results to the target_url.    Requires an OAuth access token.
-    # @param user_key The &#x60;user_key&#x60; from [developer.meltwater.io](https://developer.meltwater.io/admin/applications/).
+    # @param user_key The &#x60;user_key&#x60; from [developer.meltwater.com](https://developer.meltwater.com/admin/applications/).
     # @param authorization &#x60;Oauth Access Token&#x60;    OAuth access token (RFC 6749). Must contain the access token type &#x60;Bearer&#x60;  followed by an OAuth access token.    #### Example:        Bearer KKwmfHwxsEoeMDTMAfxOpO...
     # @param id Hook ID received from creating a hook
     # @param [Hash] opts the optional parameters
@@ -112,7 +112,7 @@ module SwaggerClient
 
     # Delete an existing hook.
     # Delete an existing hook.  Removes the hook and stops sending any search results to the target_url.    Requires an OAuth access token.
-    # @param user_key The &#x60;user_key&#x60; from [developer.meltwater.io](https://developer.meltwater.io/admin/applications/).
+    # @param user_key The &#x60;user_key&#x60; from [developer.meltwater.com](https://developer.meltwater.com/admin/applications/).
     # @param authorization &#x60;Oauth Access Token&#x60;    OAuth access token (RFC 6749). Must contain the access token type &#x60;Bearer&#x60;  followed by an OAuth access token.    #### Example:        Bearer KKwmfHwxsEoeMDTMAfxOpO...
     # @param id Hook ID received from creating a hook
     # @param [Hash] opts the optional parameters
@@ -166,7 +166,7 @@ module SwaggerClient
 
     # List all hooks.
     # List all hooks.     Delivers all previously generated hooks.    Requires an OAuth access token.
-    # @param user_key The &#x60;user_key&#x60; from [developer.meltwater.io](https://developer.meltwater.io/admin/applications/).
+    # @param user_key The &#x60;user_key&#x60; from [developer.meltwater.com](https://developer.meltwater.com/admin/applications/).
     # @param authorization &#x60;Oauth Access Token&#x60;    OAuth access token (RFC 6749). Must contain the access token type &#x60;Bearer&#x60;  followed by an OAuth access token.    #### Example:        Bearer KKwmfHwxsEoeMDTMAfxOpO...
     # @param [Hash] opts the optional parameters
     # @return [HooksCollection]
@@ -177,7 +177,7 @@ module SwaggerClient
 
     # List all hooks.
     # List all hooks.     Delivers all previously generated hooks.    Requires an OAuth access token.
-    # @param user_key The &#x60;user_key&#x60; from [developer.meltwater.io](https://developer.meltwater.io/admin/applications/).
+    # @param user_key The &#x60;user_key&#x60; from [developer.meltwater.com](https://developer.meltwater.com/admin/applications/).
     # @param authorization &#x60;Oauth Access Token&#x60;    OAuth access token (RFC 6749). Must contain the access token type &#x60;Bearer&#x60;  followed by an OAuth access token.    #### Example:        Bearer KKwmfHwxsEoeMDTMAfxOpO...
     # @param [Hash] opts the optional parameters
     # @return [Array<(HooksCollection, Fixnum, Hash)>] HooksCollection data, response status code and response headers

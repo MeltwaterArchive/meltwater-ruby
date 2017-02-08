@@ -15,7 +15,7 @@
     "application/octet-stream",
     "text/plain"
   ],
-  "host": "api.meltwater.io",
+  "host": "api.meltwater.com",
   "tags": [
     {
       "name": "hooks",
@@ -58,7 +58,7 @@
           {
             "in": "header",
             "name": "user-key",
-            "description": "The `user_key` from [developer.meltwater.io](https://developer.meltwater.io/admin/applications/).",
+            "description": "The `user_key` from [developer.meltwater.com](https://developer.meltwater.com/admin/applications/).",
             "type": "string",
             "required": true
           },
@@ -105,7 +105,7 @@
           {
             "in": "header",
             "name": "user-key",
-            "description": "The `user_key` from [developer.meltwater.io](https://developer.meltwater.io/admin/applications/).",
+            "description": "The `user_key` from [developer.meltwater.com](https://developer.meltwater.com/admin/applications/).",
             "type": "string",
             "required": true
           },
@@ -171,7 +171,7 @@
           {
             "in": "header",
             "name": "user-key",
-            "description": "The `user_key` from [developer.meltwater.io](https://developer.meltwater.io/admin/applications/).",
+            "description": "The `user_key` from [developer.meltwater.com](https://developer.meltwater.com/admin/applications/).",
             "type": "string",
             "required": true
           },
@@ -227,7 +227,7 @@
           {
             "in": "header",
             "name": "user-key",
-            "description": "The `user_key` from [developer.meltwater.io](https://developer.meltwater.io/admin/applications/).",
+            "description": "The `user_key` from [developer.meltwater.com](https://developer.meltwater.com/admin/applications/).",
             "type": "string",
             "required": true
           },
@@ -282,7 +282,7 @@
           {
             "in": "header",
             "name": "user-key",
-            "description": "The `user_key` from [developer.meltwater.io](https://developer.meltwater.io/admin/applications/).",
+            "description": "The `user_key` from [developer.meltwater.com](https://developer.meltwater.com/admin/applications/).",
             "type": "string",
             "required": true
           },
@@ -331,7 +331,7 @@
           {
             "in": "header",
             "name": "user-key",
-            "description": "The `user_key` from [developer.meltwater.io](https://developer.meltwater.io/admin/applications/).",
+            "description": "The `user_key` from [developer.meltwater.com](https://developer.meltwater.com/admin/applications/).",
             "type": "string",
             "required": true
           },
@@ -384,7 +384,7 @@
           {
             "in": "header",
             "name": "user-key",
-            "description": "The `user_key` from [developer.meltwater.io](https://developer.meltwater.io/admin/applications/).",
+            "description": "The `user_key` from [developer.meltwater.com](https://developer.meltwater.com/admin/applications/).",
             "type": "string",
             "required": true
           },

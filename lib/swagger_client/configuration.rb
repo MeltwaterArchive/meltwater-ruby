@@ -135,7 +135,7 @@ module SwaggerClient
 
     def initialize
       @scheme = 'https'
-      @host = 'api.meltwater.io'
+      @host = 'api.meltwater.com'
       @base_path = ''
       @api_key = {}
       @api_key_prefix = {}

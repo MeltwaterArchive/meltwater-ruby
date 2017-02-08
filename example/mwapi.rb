@@ -29,7 +29,7 @@ class Meltwater
     @searches = SwaggerClient::SearchesApi.new default_client
 
     # String | The `user_key` from
-    # [developer.meltwater.io](https://developer.meltwater.io/admin/applications/).
+    # [developer.meltwater.com](https://developer.meltwater.com/admin/applications/).
     @user_key = ENV['MW_USER_KEY']
     @mw_pair = Base64.strict_encode64(
       "#{ENV['MW_USER']}:#{ENV['MW_PASSWORD']}"

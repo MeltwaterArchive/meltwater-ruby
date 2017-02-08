@@ -46,7 +46,7 @@ describe 'SearchesApi' do
   # unit tests for get_all_searches
   # List your saved searches.
   # List your saved searches.
-  # @param user_key The &#x60;user_key&#x60; from [developer.meltwater.io](https://developer.meltwater.io/admin/applications/).
+  # @param user_key The &#x60;user_key&#x60; from [developer.meltwater.com](https://developer.meltwater.com/admin/applications/).
   # @param authorization &#x60;Oauth Access Token&#x60;    OAuth access token (RFC 6749). Must contain the access token type &#x60;Bearer&#x60;  followed by an OAuth access token.    #### Example:        Bearer KKwmfHwxsEoeMDTMAfxOpO...
   # @param [Hash] opts the optional parameters
   # @return [SearchesCollection]

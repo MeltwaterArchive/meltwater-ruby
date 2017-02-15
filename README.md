@@ -1,4 +1,4 @@
-# Meltwater Ruby SDK 
+# Ruby SDK 
 
 _**Disclaimer: This client was generated automatically based on our swagger_spec. We are sharing it for purely demonstrative purposes. We hope it it helps. If you have any comments please open an issue, we would love to hear from you!**_
 

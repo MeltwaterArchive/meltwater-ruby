@@ -4,7 +4,7 @@ All URIs are relative to *https://api.meltwater.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**get_all_searches**](SearchesApi.md#get_all_searches) | **GET** /v1/searches | List your saved searches.
+[**get_all_searches**](SearchesApi.md#get_all_searches) | **GET** /v2/searches | List your saved searches.
 
 
 # **get_all_searches**

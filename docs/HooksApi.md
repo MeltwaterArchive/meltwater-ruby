@@ -4,17 +4,17 @@ All URIs are relative to *https://api.meltwater.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**create_hook**](HooksApi.md#create_hook) | **POST** /v1/hooks | Creates a hook for one of your predefined searches.
-[**delete_hook**](HooksApi.md#delete_hook) | **DELETE** /v1/hooks/{id} | Delete an existing hook.
-[**get_all_hooks**](HooksApi.md#get_all_hooks) | **GET** /v1/hooks | List all hooks.
+[**create_hook**](HooksApi.md#create_hook) | **POST** /v2/hooks | Creates a hook for one of your predefined searches.
+[**delete_hook**](HooksApi.md#delete_hook) | **DELETE** /v2/hooks/{hook_id} | Delete an existing hook.
+[**get_all_hooks**](HooksApi.md#get_all_hooks) | **GET** /v2/hooks | List all hooks.
 
 
 # **create_hook**
-> Hook create_hook(user_key, authorization, v1_hooks)
+> Hook create_hook(user_key, authorization, v2_hooks, opts)
 
 Creates a hook for one of your predefined searches.
 
-Creates a hook for one of your predefined searches.  Delivers search results for the query referenced by thesearch_id to the target_url via HTTP POST. Note that a hook id will be returned on successful creation, this id is needed to delete the hook.     Requires an OAuth access token.
+Creates a hook for one of your predefined searches.  Delivers search results for the query referenced by the `search_id` to the `target_url` via HTTP POST. Note that a `hook_id` will be returned on successful creation, this id is needed to delete the hook.   We are also returning the header: `X-Hook-Secret`, a shared secret used to sign the document body pushed to your `target_url`.    Requires an OAuth access token.
 
 ### Example
 ```ruby
@@ -27,12 +27,15 @@ user_key = "user_key_example" # String | The `user_key` from [developer.meltwate
 
 authorization = "authorization_example" # String | `Oauth Access Token`    OAuth access token (RFC 6749). Must contain the access token type `Bearer`  followed by an OAuth access token.    #### Example:        Bearer KKwmfHwxsEoeMDTMAfxOpO...
 
-v1_hooks = SwaggerClient::PostV1Hooks.new # PostV1Hooks | 
+v2_hooks = SwaggerClient::PostV2Hooks.new # PostV2Hooks | 
 
+opts = { 
+  x_hook_secret: "x_hook_secret_example" # String | Shared secret for content signing/verification.    The shared secret header is optional and can be provided by the user or will  be set by the API. Must be between 16 and 64 characters.  Obtain the shared secret from the response header `X-Hook-Secret`.    #### Example:        e2d264b524240b9572ebc2fc7eebd980
+}
 
 begin
   #Creates a hook for one of your predefined searches.
-  result = api_instance.create_hook(user_key, authorization, v1_hooks)
+  result = api_instance.create_hook(user_key, authorization, v2_hooks, opts)
   p result
 rescue SwaggerClient::ApiError => e
   puts "Exception when calling HooksApi->create_hook: #{e}"
@@ -45,7 +48,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **user_key** | **String**| The &#x60;user_key&#x60; from [developer.meltwater.com](https://developer.meltwater.com/admin/applications/). | 
  **authorization** | **String**| &#x60;Oauth Access Token&#x60;    OAuth access token (RFC 6749). Must contain the access token type &#x60;Bearer&#x60;  followed by an OAuth access token.    #### Example:        Bearer KKwmfHwxsEoeMDTMAfxOpO... | 
- **v1_hooks** | [**PostV1Hooks**](PostV1Hooks.md)|  | 
+ **v2_hooks** | [**PostV2Hooks**](PostV2Hooks.md)|  | 
+ **x_hook_secret** | **String**| Shared secret for content signing/verification.    The shared secret header is optional and can be provided by the user or will  be set by the API. Must be between 16 and 64 characters.  Obtain the shared secret from the response header &#x60;X-Hook-Secret&#x60;.    #### Example:        e2d264b524240b9572ebc2fc7eebd980 | [optional] 
 
 ### Return type
 
@@ -63,7 +67,7 @@ No authorization required
 
 
 # **delete_hook**
-> delete_hook(user_key, authorization, id)
+> delete_hook(user_key, authorization, hook_id)
 
 Delete an existing hook.
 
@@ -80,12 +84,12 @@ user_key = "user_key_example" # String | The `user_key` from [developer.meltwate
 
 authorization = "authorization_example" # String | `Oauth Access Token`    OAuth access token (RFC 6749). Must contain the access token type `Bearer`  followed by an OAuth access token.    #### Example:        Bearer KKwmfHwxsEoeMDTMAfxOpO...
 
-id = "id_example" # String | Hook ID received from creating a hook
+hook_id = "hook_id_example" # String | Hook ID received from creating a hook
 
 
 begin
   #Delete an existing hook.
-  api_instance.delete_hook(user_key, authorization, id)
+  api_instance.delete_hook(user_key, authorization, hook_id)
 rescue SwaggerClient::ApiError => e
   puts "Exception when calling HooksApi->delete_hook: #{e}"
 end
@@ -97,7 +101,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **user_key** | **String**| The &#x60;user_key&#x60; from [developer.meltwater.com](https://developer.meltwater.com/admin/applications/). | 
  **authorization** | **String**| &#x60;Oauth Access Token&#x60;    OAuth access token (RFC 6749). Must contain the access token type &#x60;Bearer&#x60;  followed by an OAuth access token.    #### Example:        Bearer KKwmfHwxsEoeMDTMAfxOpO... | 
- **id** | **String**| Hook ID received from creating a hook | 
+ **hook_id** | **String**| Hook ID received from creating a hook | 
 
 ### Return type
 

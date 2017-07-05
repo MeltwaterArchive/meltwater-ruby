@@ -5,6 +5,7 @@
 #   MW_USER='<your-meltwater-email>' \
 #   MW_PASSWORD='<your-meltwater-password>' \
 #   ruby ./mwapi.rb
+$:.unshift('.')
 require 'base64'
 require 'swagger_client'
 
@@ -25,7 +26,7 @@ class Meltwater
 
     @clients = SwaggerClient::ClientsApi.new default_client
     @hooks = SwaggerClient::HooksApi.new default_client
-    @oauth = SwaggerClient::OauthApi.new default_client
+    @oauth = SwaggerClient::Oauth2Api.new default_client
     @searches = SwaggerClient::SearchesApi.new default_client
 
     # String | The `user_key` from
@@ -91,7 +92,7 @@ class Meltwater
   end
 end
 
-class HookDTO < SwaggerClient::PostV1Hooks;
+class HookDTO < SwaggerClient::PostV2Hooks;
 end
 
 begin

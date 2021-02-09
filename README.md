@@ -1,6 +1,6 @@
 # Deprecation Notice
 
-This project is no longer actively maintained. If you need to create a client library for any of the Meltwater APIs, please refer to the OpenAPI specs of the respective API, from which you can generate the client yourself.
+This project is no longer actively maintained. If you need to create a client library for any of the Meltwater APIs, please refer to the OpenAPI specs of the respective API at [developer.meltwater.com](https://developer.meltwater.com/). From those OpenAPI specs you can generate the client yourself.
 
 # Meltwater Ruby SDK
 
